@@ -1,0 +1,63 @@
+Program procedimientos;
+Uses Crt;
+Type
+  TSocio = Record
+    ID: Integer;
+    Nombre: String;
+    Edad: Integer;
+    Direccion: String;
+  End;
+Type
+  TSociosArray = Array[1..100] Of TSocio;
+Var
+  Socios: TSociosArray;
+  CantidadSocios , i, cantidad : Integer;
+  opcion : Integer;
+
+Procedure MostrarMenu;
+Begin
+  Writeln('=== Club Atlético Así - Gestión de Socios ===');
+  Writeln('1. Alta de Socios');
+  Writeln('2. Baja de Socios');
+  Writeln('3. Modificación de Socios');
+  Writeln('4. Consulta de un Socio');
+  Writeln('5. Consulta Total de Socios');
+  Writeln('0. Salir');
+  Writeln('Seleccione una opción: ');
+End;
+Procedure CargarDatos(Var socio: TSocio);
+Begin
+  Writeln('Ingrese el ID:');
+  Readln(socio.ID);
+  Writeln('Ingrese el Nombre:');
+  Readln(socio.Nombre);
+  Writeln('Ingrese la Edad:');
+  Readln(socio.Edad);
+  Writeln('Ingrese la Dirección:');
+  Readln(socio.Direccion);
+End;
+
+Procedure CargarTodosLosSocios(Var socios: TSociosArray; cantidad: Integer);
+Var
+  i: Integer;
+Begin
+  For i := 1 To cantidad Do
+    Begin
+      Writeln('Cargando datos del socio ', i);
+      CargarDatos(socios[i]);
+    End;
+End;
+//Codigo principal
+Begin
+  CantidadSocios := 0;
+
+    MostrarMenu;
+    Readln(opcion);
+    Case opcion Of
+      1: Begin
+           Writeln('Ingrese la cantidad de socios a cargar');
+           Readln(cantidad);
+           CantidadSocios := CantidadSocios + cantidad;
+           CargarTodosLosSocios(socios, cantidad);
+         End;
+  End.
