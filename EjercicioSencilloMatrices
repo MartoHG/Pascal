@@ -1,0 +1,110 @@
+Program SumarColumnaMatriz;
+Uses crt;
+
+Const
+  FILAS = 2;
+  // Número de filas
+  COLUMNAS = 3;
+  // Número de columnas
+Var
+  m1: Array[1..FILAS, 1..COLUMNAS] Of Integer;
+  // Declaración de la matriz
+  // Procedimiento para cargar la matriz
+Procedure CargarMatriz;
+Var
+  i, j: Integer;
+Begin
+  Writeln('Cargando la matriz:');
+  For i := 1 To FILAS Do
+    Begin
+      For j := 1 To COLUMNAS Do
+        Begin
+          Write('Ingrese el elemento [', i, ',', j, ']: ');
+          Readln(m1[i, j]);
+          // Leer elemento de la matriz
+        End;
+    End;
+End;
+// Procedimiento para sumar los elementos de una columna
+Procedure SumarColumna( col: Integer; Var suma: Integer);
+Var
+  i: Integer;
+Begin
+  suma := 0;
+  // Inicializar la suma en 0
+  For i := 1 To FILAS Do
+    Begin
+      suma := suma + m1[i, col];
+      // Sumar el elemento de la columna indicada
+    End;
+End;
+
+Procedure SumarFila(F: Integer; Var suma: Integer);
+Var
+  J: Integer;
+Begin
+  suma := 0;
+  For j := 1 To COLUMNAS Do
+    Begin
+      suma := suma + m1[F,j];
+    End;
+End;
+// Procedimiento para mostrar la matriz
+Procedure MostrarMatriz;
+Var
+  i, j: Integer;
+Begin
+  Writeln('La matriz es:');
+  For i := 1 To FILAS Do
+    Begin
+      For j := 1 To COLUMNAS Do
+        Begin
+          Write(m1[i, j]:4);
+          // Mostrar elemento con un ancho de 4
+        End;
+      Writeln;
+      // Nueva línea después de cada fila
+    End;
+End;
+Var
+  Fila: Integer;
+  SumaFila: Integer;
+  sumaColumna: Integer;
+  columna: Integer;
+Begin
+  Clrscr;
+  // Limpiar la pantalla
+  // Cargar la matriz
+  CargarMatriz;
+  // Mostrar la matriz
+  MostrarMatriz;
+  // Solicitar al usuario la columna a sumar
+  Write('Ingrese el número de columna a sumar (1 a ', COLUMNAS, '): ');
+  Readln(columna);
+  // Verificar que la columna esté en el rango válido
+  If (columna < 1) Or (columna > COLUMNAS) Then
+    Begin
+      Writeln('Columna inválida. Debe estar entre 1 y ', COLUMNAS);
+    End
+  Else
+    Begin
+      // Sumar la columna indicada
+      SumarColumna(columna, sumaColumna);
+      Writeln('La suma de la columna ', columna, ' es: ', sumaColumna);
+    End;
+  //Sumar fila
+  Write('Ingrese el número de fila a sumar (1 a ', FILAS, '): ');
+  Readln(fila);
+  If (fila < 1) Or (fila > filas) Then
+    Begin
+      Writeln('fila inválida. Debe estar entre 1 y ', FILAS);
+    End
+  Else
+    Begin
+      // Sumar la fila indicada
+      SumarFila(Fila, SumaFila);
+      Writeln('La suma de la fila ', FILA, ' es: ', sumafila);
+    End;
+  Readln;
+  // Esperar que el usuario presione una tecla
+End.
